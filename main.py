@@ -9,6 +9,7 @@ st.set_page_config(
 st.title("**Bách khoa động vật** :palm_tree:")
 chosen_animal = ""
 col1, col2, col3, col4, col5 = st.columns(5)
+col6, col7 = st.columns([1.5, 1])
 
 animal_info = {"Khỉ":
                    {"image": "required elements/Monkey properties/Monkey image.jpg",
@@ -44,12 +45,14 @@ animal_info = {"Khỉ":
 
 def displaying_content(b):
     if b != "":
-        st.header(f"**{b}** {animal_info[b]["emoji"]}")
-        st.image(animal_info[b]["image"], caption=f"{b} trong môi trường tự nhiện của nó")
-        st.header(f"**Âm thanh của {b}** :musical_note:")
-        st.audio(animal_info[b]["audio"], format="audio/mp3")
-        st.header(f"**Video về {b}** :movie_camera:")
-        st.video(animal_info[b]["video"], format="video/mp4")
+        with col6:
+            st.header(f"**{b}** {animal_info[b]["emoji"]}")
+            st.image(animal_info[b]["image"], caption=f"{b} trong môi trường tự nhiện của nó")
+        with col7:
+            st.header(f"**Âm thanh của {b}** :musical_note:")
+            st.audio(animal_info[b]["audio"], format="audio/mp3")
+            st.header(f"**Video về {b}** :movie_camera:")
+            st.video(animal_info[b]["video"], format="video/mp4")
     else:
         pass
 
@@ -77,6 +80,3 @@ if b5:
     chosen_animal = "Hươu cao cổ"
 
 displaying_content(chosen_animal)
-
-with st.sidebar:
-    pass
